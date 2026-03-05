@@ -178,11 +178,11 @@ export default async function HomePage() {
             <div className="flex flex-wrap gap-2">
               {lastWorkout.workout_sets &&
                 [
-                  ...new Map(
-                    lastWorkout.workout_sets.map(
-                      (s: WorkoutSet & { exercise?: Exercise }) => [s.exercise_id, s]
-                    )
-                  ).values(),
+                  Array.from(new Map(
+  lastWorkout.workout_sets.map(
+    (s: WorkoutSet & { exercise?: Exercise }) => [s.exercise_id, s] as [string, WorkoutSet & { exercise?: Exercise }]
+  )
+).values()),
                 ]
                   .slice(0, 4)
                   .map((s: WorkoutSet & { exercise?: Exercise }, i) => (
